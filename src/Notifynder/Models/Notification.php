@@ -91,7 +91,7 @@ class Notification extends Model
             return $this->morphTo('from');
         }
 
-        return $this->belongsTo(notifynder_config()->getNotifiedModel(), 'from_id');
+        return $this->belongsTo(notifynder_config()->getNotifiedModel(), 'from_id', notifynder_config()->getNotifiedModelOwnerKey());
     }
 
     /**
@@ -103,7 +103,7 @@ class Notification extends Model
             return $this->morphTo('to');
         }
 
-        return $this->belongsTo(notifynder_config()->getNotifiedModel(), 'to_id');
+        return $this->belongsTo(notifynder_config()->getNotifiedModel(), 'to_id', notifynder_config()->getNotifiedModelOwnerKey());
     }
 
     /**

@@ -16,6 +16,13 @@ return [
     'model' => 'App\User',
 
     /*
+     * If your model is not using id as it's primary key
+     * please specific it here, this option is not
+     * considerate if using notifynder as polymorphic
+     */
+    'model_owner_key' => 'id',
+
+    /*
      * Do you want have notifynder that work polymorphically?
      * just swap the value to true and you will able to use it!
      */

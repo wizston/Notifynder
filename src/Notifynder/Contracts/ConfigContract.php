@@ -28,6 +28,11 @@ interface ConfigContract
     public function getNotifiedModel();
 
     /**
+     * @return string
+     */
+    public function getNotifiedModelOwnerKey();
+
+    /**
      * @return array
      */
     public function getAdditionalFields();
