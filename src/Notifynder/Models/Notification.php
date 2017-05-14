@@ -53,6 +53,7 @@ class Notification extends Model
         'extra' => 'array',
     ];
 
+    protected $notifiedModelInstance;
     /**
      * Notification constructor.
      *
@@ -72,6 +73,10 @@ class Notification extends Model
         }
 
         parent::__construct($attributes);
+
+
+        $notifiedModel= notifynder_config()->getNotifiedModel();
+        $this->notifiedModelInstance = new $notifiedModel;
     }
 
     /**
@@ -87,11 +92,13 @@ class Notification extends Model
      */
     public function from()
     {
+
+
         if (notifynder_config()->isPolymorphic()) {
             return $this->morphTo('from');
         }
 
-        return $this->belongsTo(notifynder_config()->getNotifiedModel(), 'from_id', notifynder_config()->getNotifiedModelOwnerKey());
+        return $this->belongsTo(notifynder_config()->getNotifiedModel(), 'from_id', $this->notifiedModelInstance->getKeyName());
     }
 
     /**
@@ -103,7 +110,7 @@ class Notification extends Model
             return $this->morphTo('to');
         }
 
-        return $this->belongsTo(notifynder_config()->getNotifiedModel(), 'to_id', notifynder_config()->getNotifiedModelOwnerKey());
+        return $this->belongsTo(notifynder_config()->getNotifiedModel(), 'to_id', $this->notifiedModelInstance->getKeyName());
     }
 
     /**

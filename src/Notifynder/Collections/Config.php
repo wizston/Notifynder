@@ -62,14 +62,6 @@ class Config implements ConfigContract
     }
 
     /**
-     * @return string
-     */
-    public function getNotifiedModelOwnerKey()
-    {
-        return (string) $this->get('model_owner_key', 'id');
-    }
-
-    /**
      * @return array
      */
     public function getAdditionalFields()
